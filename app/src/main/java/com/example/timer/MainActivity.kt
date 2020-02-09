@@ -2,49 +2,61 @@ package com.example.timer
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.CountDownTimer
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
+import android.widget.EditText
 import android.widget.TextView
 
 const val EXTRA_MESSAGE = "com.example.timer.MESSAGE"
 
+const val COUNTDOWN_INTERVAL: Long = 1000
+
 class MainActivity : AppCompatActivity() {
-    private val timer = Timer(10000000, 1000)
-    private lateinit var textTimer: TextView
+    private lateinit var timerText: TextView
+    private lateinit var taskMinutesInput: EditText
+    private lateinit var timer: Timer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        textTimer = findViewById<TextView>(R.id.timer_text)
+        timerText = findViewById(R.id.timer_text)
+        taskMinutesInput = findViewById(R.id.task_minutes_text_edit)
+        taskMinutesInput.addTextChangedListener(MyTextWatcher(timerText))
     }
 
-    fun start(view: View) {
-        timer.initTimer(textTimer)
+    fun start(button: View) {
+        val minutes = (taskMinutesInput.text.toString().toLongOrNull() ?: 0) * 60 * 1000
+        timer = Timer(minutes, COUNTDOWN_INTERVAL, ::tick, ::finishTimer)
+        timer.start()
+        taskMinutesInput.setEnabled(false)
     }
 
-    fun stop(view: View) {
+    fun stop(button: View) {
         timer.cancel()
+        taskMinutesInput.setEnabled(true)
+    }
+
+    fun tick(millisec: Long) {
+        println(millisec)
+        timerText.setText(formatMillisecToTime(millisec))
+    }
+
+    fun finishTimer() {
+        println("finish")
     }
 }
 
-class Timer(millisInFuture: Long, countDownInterval: Long): CountDownTimer(millisInFuture, countDownInterval) {
-    private lateinit var textTimer: TextView
+class MyTextWatcher(textView: TextView): TextWatcher {
+    private val textView = textView
 
-    public fun initTimer(textView: TextView) {
-        textTimer = textView
-        this.start()
+    override fun afterTextChanged(s: Editable) {
+        val millisec = (s.toString().toLongOrNull() ?: 0) * 60 * 1000
+        textView.setText(formatMillisecToTime(millisec))
     }
 
-    override fun onTick(millisUntilFinished: Long) {
-        val secUntilFinished = millisUntilFinished / 1000
-        val h = secUntilFinished / 3600
-        val m = (secUntilFinished % 3600) / 60
-        val s = secUntilFinished % 60
-        textTimer.setText("%02d:%02d:%02d".format(h, m, s))
-    }
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-    override fun onFinish() {
-        println("finish")
-    }
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 }
