@@ -5,4 +5,10 @@
     <string name="stop_button">STOP</string>
     <string name="task_minute_label">1ポモドーロあたりの時間</string>
     <string name="minute_label">分</string>
+    <string name="completion_title">どれくらい集中できた？</string>
+    <string name="manzoku1">1</string>
+    <string name="manzoku2">2</string>
+    <string name="manzoku3">3</string>
+    <string name="manzoku4">4</string>
+    <string name="manzoku5">5</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.timer
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -27,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun start(button: View) {
-        val minutes = (taskMinutesInput.text.toString().toLongOrNull() ?: 0) * 60 * 1000
+        val minutes = (taskMinutesInput.text.toString().toLongOrNull() ?: 0) * 60 * 100
         timer = Timer(minutes, COUNTDOWN_INTERVAL, ::tick, ::finishTimer)
         timer.start()
         taskMinutesInput.setEnabled(false)
@@ -45,6 +46,8 @@ class MainActivity : AppCompatActivity() {
 
     fun finishTimer() {
         println("finish")
+        val intent = Intent(this, CompletionActivity::class.java)
+        startActivity(intent)
     }
 }
 
