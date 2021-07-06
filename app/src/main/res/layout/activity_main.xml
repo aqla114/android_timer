@@ -68,12 +68,45 @@
     <EditText
         android:id="@+id/task_minutes_text_edit"
         android:layout_width="95dp"
-        android:layout_height="41dp"
+        android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/image_tomato"
         app:layout_constraintEnd_toStartOf="@+id/taskMinuteLabel2"
         app:layout_constraintStart_toEndOf="@+id/taskMinuteLabel1"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/stop_button" />
+
+    <ImageView
+        android:id="@+id/image_tomato"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/tomato" />
+
+    <EditText
+        android:id="@+id/taskNameEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/task_minutes_text_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stop_button" />
+
+    <TextView
+        android:id="@+id/taskNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_name_label"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/taskNameEditText"
+        app:layout_constraintEnd_toStartOf="@+id/taskNameEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/taskNameEditText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
