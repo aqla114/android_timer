@@ -16,8 +16,6 @@ class TaskAdapter : TaskRepository {
             val maxId = db.where<TaskObject>(TaskObject::class.java).max("id")
             val nextId = (maxId?.toLong() ?: 0L) + 1
 
-            println(maxId)
-
             val task = db.createObject<TaskObject>(nextId)
             task.taskName = taskName
         }
@@ -38,8 +36,6 @@ class TaskAdapter : TaskRepository {
     override fun getAll(): List<Task> {
         println("GET ALL!!!")
 
-        println(realm.configuration.path)
-
         val taskData = realm.where<TaskObject>().findAll()
         val tasks = taskData.map { task ->
             Task(task.id, task.taskName, task.evaluation)
@@ -48,5 +44,11 @@ class TaskAdapter : TaskRepository {
         realm.close()
 
         return tasks
+    }
+
+    override fun cleanDB() {
+        realm.executeTransaction { db ->
+            db.deleteAll()
+        }
     }
 }

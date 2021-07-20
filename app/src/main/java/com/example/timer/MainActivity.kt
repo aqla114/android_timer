@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var taskNameInput: EditText
     private lateinit var timer: Timer
     private lateinit var startButton: Button
-    private lateinit var task : TaskRepository
+    private lateinit var taskRepository: TaskRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,9 +36,9 @@ class MainActivity : AppCompatActivity() {
         taskMinutesInput.addTextChangedListener(MyTextWatcher(timerText, timer))
         startButton = findViewById(R.id.start_button)
 
-        task = TaskAdapter()
+        taskRepository = TaskAdapter()
 
-        val tasks = task.getAll()
+        val tasks = taskRepository.getAll()
 
         println(tasks)
     }

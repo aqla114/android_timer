@@ -6,4 +6,5 @@ interface TaskRepository {
     fun push(taskName: String)
     fun get(id: Long): Task
     fun getAll(): List<Task>
+    fun cleanDB()
 }
