@@ -5,10 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import com.example.timer.repositories.DataHolderRepository
+import com.example.timer.adapters.TaskAdapter
+import com.example.timer.repositories.TaskRepository
 
 class CompletionActivity : AppCompatActivity() {
-    private val dataHolderRepository: DataHolderRepository<String> = DataHolder()
+    private val task: TaskRepository = TaskAdapter()
     private var time = 0
     private var taskName = ""
 
@@ -26,7 +27,7 @@ class CompletionActivity : AppCompatActivity() {
     }
 
     fun backToTimer(button_: View) {
-        dataHolderRepository.push(taskName)
+        task.push(taskName)
 
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)

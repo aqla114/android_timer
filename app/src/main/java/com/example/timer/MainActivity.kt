@@ -9,6 +9,8 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import com.example.timer.adapters.TaskAdapter
+import com.example.timer.repositories.TaskRepository
 
 const val TIME_MESSAGE = "com.example.timer.TIME_MESSAGE"
 const val TASK_NAME_MESSAGE = "com.example.timer.TASK_NAME_MESSAGE"
@@ -20,7 +22,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var taskMinutesInput: EditText
     private lateinit var taskNameInput: EditText
     private lateinit var timer: Timer
-    private lateinit var startButton: Button;
+    private lateinit var startButton: Button
+    private lateinit var task : TaskRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +35,12 @@ class MainActivity : AppCompatActivity() {
         timer = Timer(COUNTDOWN_INTERVAL, ::tick, ::finishTimer)
         taskMinutesInput.addTextChangedListener(MyTextWatcher(timerText, timer))
         startButton = findViewById(R.id.start_button)
+
+        task = TaskAdapter()
+
+        val tasks = task.getAll()
+
+        println(tasks)
     }
 
     fun start(button: View) {
