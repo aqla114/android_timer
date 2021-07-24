@@ -26,7 +26,13 @@ class TaskAdapter : TaskRepository {
     override fun get(id: Long): Task {
         println("GET!!!!!!")
         val taskData = realm.where<TaskObject>().equalTo("id", id).findFirst()
-        val task = Task(taskData?.id, taskData?.taskName, taskData?.evaluation)
+
+        if (taskData?.id == null || taskData?.taskName == null || taskData?.evaluation == null) {
+            println("Task was not found. id = %d".format(id))
+            return Task()
+        }
+
+        val task = Task(taskData.id, taskData?.taskName, taskData.evaluation)
 
         realm.close()
 

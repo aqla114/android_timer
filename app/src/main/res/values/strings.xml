@@ -13,4 +13,5 @@
     <string name="manzoku5">5</string>
     <string name="next_task_button">次のタスクへ</string>
     <string name="task_name_label">タスク名</string>
+    <string name="title_activity_completed_tasks_list">CompletedTasksListActivity</string>
 </resources>

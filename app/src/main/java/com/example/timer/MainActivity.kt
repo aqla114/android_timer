@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         startButton.setEnabled(false)
     }
 
-    fun stop(button_: View) {
+    fun stop(button: View) {
         timer.stop()
         taskMinutesInput.setEnabled(true)
         startButton.setEnabled(true)

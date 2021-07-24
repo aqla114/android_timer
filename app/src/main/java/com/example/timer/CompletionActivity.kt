@@ -23,13 +23,12 @@ class CompletionActivity : AppCompatActivity() {
         val taskNameLabel: TextView = findViewById(R.id.taskNameLabel)
 
         taskNameLabel.setText(taskName)
-
     }
 
     fun backToTimer(button_: View) {
         task.push(taskName)
 
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, CompletedTasksListActivity::class.java)
         startActivity(intent)
     }
 }
