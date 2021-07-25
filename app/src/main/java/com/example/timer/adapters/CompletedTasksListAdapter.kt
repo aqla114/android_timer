@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.timer.entities.Task
+import com.example.timer.formatMillisecToTime
 
 class CompletedTasksListAdapter(private val tasks: List<Task>): RecyclerView.Adapter<CompletedTasksListAdapter.ViewHolder>() {
 
@@ -14,8 +15,8 @@ class CompletedTasksListAdapter(private val tasks: List<Task>): RecyclerView.Ada
     }
 
     class ViewHolder(cell: View): RecyclerView.ViewHolder(cell) {
-        val taskName: TextView = cell.findViewById(android.R.id.text1)
-        val evaluation: TextView = cell.findViewById(android.R.id.text2)
+        val text1: TextView = cell.findViewById(android.R.id.text1)
+        val text2: TextView = cell.findViewById(android.R.id.text2)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,8 +27,8 @@ class CompletedTasksListAdapter(private val tasks: List<Task>): RecyclerView.Ada
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val task = getItem(position)
-        holder.taskName.text = task?.taskName
-        holder.evaluation.text = task?.evaluation.toString()
+        holder.text1.text = task?.taskName
+        holder.text2.text = "評価：%d　時間：%d分".format(task?.evaluation, task?.time)
     }
 
     override fun getItemCount(): Int {

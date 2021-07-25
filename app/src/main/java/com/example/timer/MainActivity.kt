@@ -37,31 +37,30 @@ class MainActivity : AppCompatActivity() {
         startButton = findViewById(R.id.start_button)
 
         taskRepository = TaskAdapter()
-
-        val tasks = taskRepository.getAll()
-
-        println(tasks)
     }
 
     fun start(button: View) {
         timer.start()
 
-        taskMinutesInput.setEnabled(false)
-        startButton.setEnabled(false)
+        taskNameInput.isEnabled = false
+        taskMinutesInput.isEnabled = false
+        startButton.isEnabled = false
     }
 
     fun stop(button: View) {
         timer.stop()
-        taskMinutesInput.setEnabled(true)
-        startButton.setEnabled(true)
+
+        taskNameInput.isEnabled =true
+        taskMinutesInput.isEnabled = true
+        startButton.isEnabled = true
     }
 
-    fun tick(millisec: Long) {
-        timerText.setText(formatMillisecToTime(millisec))
+    private fun tick(millisec: Long) {
+        timerText.text = formatMillisecToTime(millisec)
     }
 
-    fun finishTimer() {
-        val finishedMinutes = Integer.parseInt(taskMinutesInput.text.toString())
+    private fun finishTimer() {
+        val finishedMinutes = Integer.parseInt(taskMinutesInput.text.toString()).toLong()
         val taskName = taskNameInput.text.toString()
 
         val intent = Intent(this, CompletionActivity::class.java).apply {
@@ -80,7 +79,7 @@ class MyTextWatcher(textView: TextView, timer: Timer): TextWatcher {
     override fun afterTextChanged(s: Editable) {
         val millisec = (s.toString().toLongOrNull() ?: 0) * 60 * 100
         timer.setTime(millisec)
-        textView.setText(formatMillisecToTime(millisec))
+        textView.text = formatMillisecToTime(millisec)
     }
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}

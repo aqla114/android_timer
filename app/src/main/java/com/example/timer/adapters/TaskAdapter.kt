@@ -10,14 +10,16 @@ import io.realm.kotlin.where
 class TaskAdapter : TaskRepository {
     private val realm = Realm.getDefaultInstance()
 
-    override fun push(taskName: String) {
+    override fun push(task: Task) {
         println("PUSH!!!!!!!")
         realm.executeTransaction { db: Realm ->
             val maxId = db.where<TaskObject>(TaskObject::class.java).max("id")
             val nextId = (maxId?.toLong() ?: 0L) + 1
 
-            val task = db.createObject<TaskObject>(nextId)
-            task.taskName = taskName
+            val taskObject = db.createObject<TaskObject>(nextId)
+            taskObject.taskName = task.taskName
+            taskObject.evaluation = task.evaluation
+            taskObject.time = task.time
         }
 
         realm.close()
@@ -27,12 +29,12 @@ class TaskAdapter : TaskRepository {
         println("GET!!!!!!")
         val taskData = realm.where<TaskObject>().equalTo("id", id).findFirst()
 
-        if (taskData?.id == null || taskData?.taskName == null || taskData?.evaluation == null) {
+        if (taskData?.id == null) {
             println("Task was not found. id = %d".format(id))
             return Task()
         }
 
-        val task = Task(taskData.id, taskData?.taskName, taskData.evaluation)
+        val task = Task(taskData.id, taskData.taskName, taskData.evaluation, taskData.time)
 
         realm.close()
 
@@ -44,7 +46,7 @@ class TaskAdapter : TaskRepository {
 
         val taskData = realm.where<TaskObject>().findAll()
         val tasks = taskData.map { task ->
-            Task(task.id, task.taskName, task.evaluation)
+            Task(task.id, task.taskName, task.evaluation, task.time)
         }
 
         realm.close()

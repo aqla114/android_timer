@@ -24,13 +24,13 @@
         android:layout_marginBottom="16dp"
         android:text="@string/completion_title"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+        app:layout_constraintBottom_toTopOf="@+id/evaluationRadioGroup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent" />
 
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/evaluationRadioGroup"
         android:layout_width="304dp"
         android:layout_height="51dp"
         android:layout_marginBottom="32dp"
@@ -40,7 +40,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <RadioButton
-            android:id="@+id/manzoku1"
+            android:id="@+id/evaluation1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -50,7 +50,7 @@
             android:text="@string/manzoku1" />
 
         <RadioButton
-            android:id="@+id/manzoku2"
+            android:id="@+id/evaluation2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -60,7 +60,7 @@
             android:text="@string/manzoku2" />
 
         <RadioButton
-            android:id="@+id/manzoku3"
+            android:id="@+id/evaluation3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -70,7 +70,7 @@
             android:text="@string/manzoku3" />
 
         <RadioButton
-            android:id="@+id/manzoku4"
+            android:id="@+id/evaluation4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -80,7 +80,7 @@
             android:text="@string/manzoku4" />
 
         <RadioButton
-            android:id="@+id/manzoku5"
+            android:id="@+id/evaluation5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

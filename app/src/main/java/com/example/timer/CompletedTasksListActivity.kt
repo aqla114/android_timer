@@ -21,7 +21,6 @@ class CompletedTasksListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_completed_tasks_list)
         setSupportActionBar(toolbar)
 
-
         val tasks = taskRepository.getAll()
 
         completed_tasks_list.layoutManager = LinearLayoutManager(this)
