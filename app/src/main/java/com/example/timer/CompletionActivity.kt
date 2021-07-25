@@ -21,6 +21,7 @@ class CompletionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_completion)
+        setTitle(R.string.activity_completion_title)
 
         time = intent.getLongExtra(TIME_MESSAGE, 0)
         taskName = intent.getStringExtra(TASK_NAME_MESSAGE)

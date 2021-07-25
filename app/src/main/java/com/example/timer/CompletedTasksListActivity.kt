@@ -21,6 +21,7 @@ class CompletedTasksListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_completed_tasks_list)
         setSupportActionBar(toolbar)
+        setTitle(R.string.activity_completed_tasks_list_title)
 
         val tasks = taskRepository.getAll().sortedByDescending { x -> x.id }
 

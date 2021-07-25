@@ -14,4 +14,7 @@
     <string name="next_task_button">次のタスクへ</string>
     <string name="task_name_label">タスク名</string>
     <string name="title_activity_completed_tasks_list">CompletedTasksListActivity</string>
+    <string name="activity_completed_tasks_list_title">完了タスク一覧</string>
+    <string name="activity_completion_title">集中できた？</string>
+    <string name="activity_main">タスクタイマー</string>
 </resources>
