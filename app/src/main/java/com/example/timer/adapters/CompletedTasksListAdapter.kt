@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.timer.entities.Task
-import com.example.timer.formatMillisecToTime
 
 class CompletedTasksListAdapter(private val tasks: List<Task>): RecyclerView.Adapter<CompletedTasksListAdapter.ViewHolder>() {
 
@@ -22,6 +21,7 @@ class CompletedTasksListAdapter(private val tasks: List<Task>): RecyclerView.Ada
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(android.R.layout.simple_list_item_2, parent, false)
+
         return ViewHolder(view)
     }
 

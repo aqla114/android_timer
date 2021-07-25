@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.timer.adapters.CompletedTasksListAdapter
 import com.example.timer.adapters.TaskAdapter
@@ -25,6 +26,9 @@ class CompletedTasksListActivity : AppCompatActivity() {
 
         completed_tasks_list.layoutManager = LinearLayoutManager(this)
         completed_tasks_list.adapter = CompletedTasksListAdapter(tasks)
+
+        val divider = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+        completed_tasks_list.addItemDecoration(divider)
     }
 
     fun createTask(button: View) {
